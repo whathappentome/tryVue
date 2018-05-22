@@ -42,13 +42,12 @@
   }
 }
 .eca{
-  width: 700px;
+  width: 100%;
   height: 600px;
 }
 </style>
 <template>
   <div class="hello">
-    <button class="button"  @mousemove="dataDetails($event)" ></button>
     <el-tree :data="data" :props="defaultProps"></el-tree>
     <div id="eca" class="eca"></div>
   </div>
@@ -102,115 +101,94 @@ export default {
           children: 'children',
           label: 'label'
         },
-        edd:null
+        echart:null
     }
+  },
+  beforeCreate(){
+
+  },
+  created(){
+    
   },
   methods: {
-    dataDetails(e){
-      console.log("Dddddddd")
-      const x = e.pageX - e.target.offsetLeft
-      const y = e.pageY - e.target.offsetTop
-
-      e.target.style.setProperty('--x', `${ x }px`)
-      e.target.style.setProperty('--y', `${ y }px`)
-    }
   },
   mounted(){
-    var data = {"重庆市":[106.55, 29.57],
-"万州":[ 108.4, 30.82],}
-var dataValue = [{"name":"重庆市","value":[106.55, 29.57,480]},{"name":"万州","value":[108.4, 30.82,480]},]
-    this.edd= echarts.init(document.getElementById("eca"));
+    var data = {"重庆市":[106.55, 29.57],"万州":[ 108.4, 30.82],}
+    var dataValue = [{"name":"重庆市","value":[106.55, 29.57,480]},{"name":"万州","value":[108.4, 30.82,480]},]
+    this.echart= echarts.init(document.getElementById("eca"));
     var chongqingMapOption ={
-                        backgroundColor: '#020925',
-                        //值域选择,值域范围
-                        //提示框
-                        tooltip: {
-                            trigger: 'item', //触发类型，默认数据触发
-                            backgroundColor: 'rgba(0,0,0,0.5)',
-                            padding: 10,
-                            formatter: function (params) {
-                                return params.name + '<br/> ' +
-                                    (params.value > 0 ? '停车场: ' + params.value + '家' : '')
-                            },
-                            textStyle: {
-                                fontSize: 13 //字体大小
-                            }
-                        },
-                        geo: {
-                            show: true,
-                            map: '重庆',
-                            label: {
-                                normal: {
-                                    show: false
-                                },
-                                emphasis: {
-                                    show: false,
-                                }
-                            },
-                            roam: true,
-                            itemStyle: {
-                                normal: {
-                                    areaColor: '#031525',
-                                    borderColor: '#3B5077',
-                                },
-                                emphasis: {
-                                    areaColor: '#2B91B7',
-                                }
-                            }
-                        },
-                        series: [
-                            {
-                                name: '点',
-                                type: 'scatter',
-                                coordinateSystem: 'geo',
-                                symbol: 'pin', //气泡
-                                symbolSize: 30,
-                                label: {
-                                    normal: {
-                                        show: true,
-                                        textStyle: {
-                                            color: '#fff',
-                                            fontSize: 9,
-                                        }
-                                    },
-                                    formatter: function (params) {
-                                      console.log(params)
-                            },
-                                },
-                                itemStyle: {
-                                    normal: {
-                                        color: '#F62157', //标志颜色
-                                    }
-                                },
-                                zlevel: 6,
-                                data: dataValue,
-                            },
-                            //全国车场数据
-                            {
-                                name: '重庆',
-                                type: 'map',
-                                map: '重庆',
-                                roam: false, //是否开启滚轮缩放
-                                label: {
-                                    show: true,
-                                    textStyle: {
-                                        color: "#466cb2"
-                                    }
-                                },
-                                //图形样式
-                                itemStyle: {
-                                    //默认
-                                    //区域色块样式
-                                    areaColor: '#020925',
-                                    borderColor: 'rgba(100,149,237,1)', //边框线颜色
-                                    borderWidth: 0.6, //边框线宽度
-                                },
-                                data: data,
-                            },
-                            //运动轨迹
-                        ]
-                    }
-    this.edd.setOption(chongqingMapOption);
+      backgroundColor: '#020925',
+      //值域选择,值域范围
+      //提示框
+      tooltip: {
+        trigger: 'item', //触发类型，默认数据触发
+        backgroundColor: 'rgba(0,0,0,0.5)',
+        padding: 10,
+        formatter: function (params) {
+            return params.name + '<br/> ' +
+                (params.value > 0 ? '停车场: ' + params.value + '家' : '')
+        },
+        textStyle: {
+            fontSize: 13 //字体大小
+        }
+      },
+      geo: {
+        show: true,
+        map: '重庆',
+        label: {
+            normal: {
+                show: false
+            },
+            emphasis: {
+                show: false,
+            }
+        },
+        roam: true,
+        label: {
+          show: true,
+          textStyle: {
+            color: "#466cb2"
+          }
+        },
+      //图形样式
+        itemStyle: {
+          //默认
+          //区域色块样式
+          areaColor: '#020925',
+          borderColor: 'rgba(100,149,237,1)', //边框线颜色
+          borderWidth: 0.6, //边框线宽度
+        },
+        data: data,
+      },
+      series: [{
+        name: '点',
+        type: 'scatter',
+        coordinateSystem: 'geo',
+        symbol: 'pin', //气泡
+        symbolSize: 30,
+        label: {
+          normal: {
+              show: true,
+              textStyle: {
+                  color: '#fff',
+                  fontSize: 9,
+              }
+          },
+          formatter: function (params) {
+            console.log(params)
+          },
+        },
+        itemStyle: {
+          normal: {
+            color: '#F62157', //标志颜色
+          }
+        },
+        zlevel: 6,
+        data: dataValue,
+        },
+      ]
+    }
+    this.echart.setOption(chongqingMapOption);
   }
 }
 </script>

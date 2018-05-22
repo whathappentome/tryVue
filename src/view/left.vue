@@ -1,12 +1,6 @@
 <style scoped>
- .hello{
-   position: fixed;
-   top: 70px;
-   bottom: 20px;
-   right: 20px;
-   background: yellowgreen;
-   left: 320px;
- }
+@import "../assets/less/common.less";
+
 </style>
 <template>
   <div class="hello">
