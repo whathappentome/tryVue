@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 
 Vue.use(Router)
 const left = r => require.ensure([], () => r(require('../view/left.vue')), 'left')
+const leftt = r => require.ensure([], () => r(require('../view/leftt.vue')), 'leftt')
 const lefttt = r => require.ensure([], () => r(require('../view/lefttt.vue')), 'lefttt')
 const routes=[{
     path: '/',
@@ -13,6 +14,10 @@ const routes=[{
       {
         path: 'left',
         component: left
+      },
+      {
+        path: 'leftt',
+        component: leftt
       },
       {
         path: 'lefttt',

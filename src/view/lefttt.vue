@@ -7,40 +7,6 @@
    background: hotpink;
    left: 320px;
  }
- .button {
-  position: relative;
-  appearance: none;
-  background: #f72359;
-  padding: 1em 2em;
-  border: none;
-  color: white;
-  font-size: 1.2em;
-  cursor: pointer;
-  outline: none;
-  overflow: hidden;
-  border-radius: 100px;
-
-  span {
-    position: relative;
-  }
-
-  &::before {
-    --size: 0;  
-    content: '';
-    position: absolute;
-    left: var(--x);
-    top: var(--y);
-    width: var(--size);
-    height: var(--size);
-    background: radial-gradient(circle closest-side, #4405f7, transparent);
-    transform: translate(-50%, -50%);
-    transition: width .2s ease, height .2s ease;
-  }
-
-  &:hover::before {
-    --size: 400px;
-  }
-}
 .eca{
   width: 100%;
   height: 600px;
@@ -48,7 +14,6 @@
 </style>
 <template>
   <div class="hello">
-    <el-tree :data="data" :props="defaultProps"></el-tree>
     <div id="eca" class="eca"></div>
   </div>
 </template>
@@ -62,46 +27,7 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      data: [{
-          label: '一级 1',
-          children: [{
-            label: '二级 1-1',
-            children: [{
-              label: '三级 1-1-1'
-            }]
-          }]
-        }, {
-          label: '一级 2',
-          children: [{
-            label: '二级 2-1',
-            children: [{
-              label: '三级 2-1-1'
-            }]
-          }, {
-            label: '二级 2-2',
-            children: [{
-              label: '三级 2-2-1'
-            }]
-          }]
-        }, {
-          label: '一级 3',
-          children: [{
-            label: '二级 3-1',
-            children: [{
-              label: '三级 3-1-1'
-            }]
-          }, {
-            label: '二级 3-2',
-            children: [{
-              label: '三级 3-2-1'
-            }]
-          }]
-        }],
-        defaultProps: {
-          children: 'children',
-          label: 'label'
-        },
-        echart:null
+      echart:null
     }
   },
   beforeCreate(){

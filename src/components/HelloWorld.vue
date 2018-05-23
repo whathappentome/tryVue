@@ -23,12 +23,25 @@
 </style>
 <template>
   <div class="cost">
-    <ul>
-      <li @click="redirect">一</li>
-      <li @click="redirec">二</li>
-      <li>三</li>
-      <li>四</li>
-    </ul>
+    <el-menu default-active="1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
+      <el-submenu index="1">
+        <template slot="title"><i class="el-icon-message"></i>导航一</template>
+        <el-menu-item-group>
+          <template slot="title">分组一</template>
+          <el-menu-item index="1-1" @click="redirect">选项1</el-menu-item>
+          <el-menu-item index="1-2" @click="redirec">选项2</el-menu-item>
+        </el-menu-item-group>
+        <el-menu-item-group title="分组2">
+          <el-menu-item index="1-3">选项3</el-menu-item>
+        </el-menu-item-group>
+        <el-submenu index="1-4">
+          <template slot="title">选项4</template>
+          <el-menu-item index="1-4-1">选项1</el-menu-item>
+        </el-submenu>
+      </el-submenu>
+      <el-menu-item index="2"><i class="el-icon-menu"></i>导航二</el-menu-item>
+      <el-menu-item index="3"><i class="el-icon-setting"></i>导航三</el-menu-item>
+    </el-menu>
     <div class="head"></div>
     <router-view/>
   </div>
@@ -44,11 +57,17 @@ export default {
   },
   methods: {
     redirect() {
-        this.$router.push("/left");
+        this.$router.push("/leftt");
     },
     redirec() {
         this.$router.push("/lefttt");
     },
+    handleOpen(key, keyPath) {
+      console.log(key, keyPath);
+    },
+    handleClose(key, keyPath) {
+      console.log(key, keyPath);
+    }
   },
 }
 </script>
