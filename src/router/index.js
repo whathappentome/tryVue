@@ -13,7 +13,11 @@ const routes=[{
     children:[
       {
         path: 'left',
-        component: left
+        component: left,
+        children:[{
+          path: 'left',
+          component: left,
+        }]
       },
       {
         path: 'leftt',

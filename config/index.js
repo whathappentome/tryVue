@@ -65,5 +65,22 @@ module.exports = {
     // `npm run build --report`
     // Set to `true` or `false` to always turn it on or off
     bundleAnalyzerReport: process.env.npm_config_report
+  },
+  dev: {
+    env: require('./dev.env'),
+    port: 8080,
+    autoOpenBrowser: true,
+    assetsSubDirectory: 'static',
+    assetsPublicPath: '/',
+    proxyTable: {
+    '/api': {
+    target: 'http://192.168.0.66', //目标接口域名
+    changeOrigin: true, //是否跨域
+    pathRewrite: {
+    '^/api': '/' //重写接口
+    }
+    },
+    cssSourceMap: false
+    }
   }
 }

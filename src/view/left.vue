@@ -5,6 +5,7 @@
 <template>
   <div class="hello">
     <div>fffffffffffffffffffffffffffffffff</div>
+    <router-view/>
   </div>
 </template>
 
