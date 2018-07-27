@@ -1,0 +1,25 @@
+<html >
+    <meta></meta>
+    <head>
+        <style>
+            #parent{
+                width: 200px;
+                height: 300px;
+            }
+        </style>
+    </head>
+    <body>
+       <div id="parent">
+           <button id="child">点击</button>
+       </div> 
+    </body>
+    <script>
+        function aaa(){}
+        document.getElementById("parent").addEventListener("click",function(e){
+            alert("parent事件被触发，"+this.id);
+        },true)
+        document.getElementById("child").addEventListener("click",function(e){
+            alert("child事件被触发，"+this.id,true)
+        },true)
+    </script>
+</html>

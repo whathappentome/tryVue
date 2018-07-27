@@ -154,7 +154,7 @@ var sum = [0, 1, 2, 3].reduce(function (a, b) {
 
   /* ~~双排位法取整 */
 
-  console.log(~~4.45)//4 取整
+  console.log(~~4.85)//4 取整
   console.log(Math.round(4.6))//5 四舍五入
 
   /* 对象合并 */
@@ -190,3 +190,223 @@ function showGrace(grace) {
     return levelText[levelText.length-1];
 }
 console.log(showGrace(500));//信用较差
+
+/* 字符串转代码 */
+
+eval("var a=3;var b=4; console.log(a+b)");//7
+
+/* 过滤无效数组成员 */
+const compact = arr => arr.filter(Boolean)
+compact([0, 1, false, 2, '', 3, 'a', 'e' * 23, NaN, 's', 34])  // [ 1, 2, 3, 'a', 's', 34 ]
+
+var a=0,b=2;//逗号操作符，可一次定义多个变量
+++a;//一元操作符（只能操作一个值）
+console.log(!false)//true 布尔操作符（包括 ！非 &&与 和 ||或）
+console.log(a>b)//false 关系操作符比较值（包括>,<,<=,>=）
+console.log(a==b)//false 相等操作符（包括==，！= ，===）
+a += 10;//相当于 a=a+10 赋值操作符（包括 +=，/=,%=,-=等）
+
+var arr=["a","b","c"],a=0;
+if (arr.length==3) {//调用Boolean()把条件语句转换为布尔值
+    alert("数组arr有3个成员")
+} else {
+    alert("数组arr没有有3个成员")
+}
+do{//只要条件不成立 循环会一直执行下去
+ a += 2;
+}while(a<10){//成立后执行
+    console.log(a)//10
+}
+var b=0;
+while(b<10){//只要条件不成立 循环会一直执行下去
+    b += 2;
+    console.log(b)//2 4 6 8 10
+}
+for(var i=0;i<arr.length;i++){
+    if(i==2){
+        break;//循环切断不再继续
+    }
+    console.log(arr[i])//a b
+}
+for(var index in arr){
+    if(index==1){
+        continue;//循环中断一次 然后继续
+    }
+    console.log(arr[index])//a c
+}
+var text = "c"
+switch(text){
+ case "a":
+ console.log("值为a时做什么什么");
+ break;
+ case "c" :
+ console.log("值为c时做什么什么");
+ break;
+}
+var item={
+    a:"w",
+    b:"c"
+};
+with(item){
+    var w = a;
+    var c = b;
+}
+// var w = item.a;
+// var c = item.b;
+
+function text(num){
+    return num+100;
+    console.log("永远不会被调用")
+}
+function text(num){
+    return num+200;
+}
+console.log(text(100))//300 
+
+var obj1=new Object();
+var obj2=obj1;
+obj1.name="对象名";
+console.log(obj2.name)//对象名
+
+function text(num){
+    num.name="赋值";
+}
+// var num1=new Object();
+text(num1);
+console.log(num1.name);//"赋值"
+
+var num=0;
+function text(){
+    if(num==0){
+        var color='red';
+    }
+    return color;
+}
+var color1=text();
+console.log(num,color,color1)//0,'red','red' 
+
+var str = "abacdefag";
+var patt1 = /a/g;
+var patt2 = new RegExp("a","g")
+console.log(str.match(patt1))//[ 'a', 'a', 'a' ]
+console.log(str.match(patt2))//[ 'a', 'a', 'a' ]
+
+
+// arguments 对象只能在函数内使用
+function test(a){
+    console.log(a,Object.prototype.toString.call(arguments));
+    console.log(arguments[0],arguments[1]);
+    console.log(typeof arguments[0]);
+}
+test(1);
+
+var obj={
+    name:"zhangxing",
+    age:'18',
+    showAge:function(){ 
+        console.log(this.age);//18 this.age相当于obj.age
+    }
+}
+Object.defineProperty(obj,"name",{
+    configurable:true,
+    enumerable:true,
+    writable:true,
+    value:"zhangxing"
+})
+
+
+function text(name,age,score){
+    this.name =name
+    // this.name = ;
+    this.age = age;
+    this.score = score;
+    console.log(this.name)
+}
+var text1=text("张星","18","100");//张星
+var text2=text("大星","19","100");//大星
+console.log(this.name)
+
+
+
+function test(){}
+test.prototype.name="zhangxing";
+test.prototype.age="18";
+test.prototype.getAge=function(){
+    console.log(this.age)//18
+};
+var text1 = new test();
+text1.name = "new"
+console.log(text1.name)
+console.log(test.prototype.name)
+
+
+
+
+function test1(){}
+test1.prototype = new test();
+test.prototype.score="100";
+test.prototype.getScore=function(){
+    console.log(this.score);
+};
+
+function test(num){
+    if(num<0){
+        return num;
+    }else{
+        return num+test(num);
+    }
+}
+
+function test() {
+    let item = 0; 
+    function A() {
+        var b = 2;
+        console.log(b+(++item)); // 2
+    }
+    A()
+    // console.log(b)// b is not defined  
+}
+test()
+
+try{
+    try { 
+        if(x == "")  {
+            console.log("aaaa")
+        }
+        console.log("aaaa")
+        console.log("aaaa")
+        console.log("aaaa")
+        console.log("aaaa")
+
+        //throw "为空";//执行代码除错
+    }
+    catch(err) {
+        throw new Error("aaas") ;
+        //console.log("" + err);//出错时执行
+    }
+}
+catch(err) {
+   console.log("sss" + err);//出错时执行
+}
+
+
+<div id="parent">
+　　<div id="child" class="child"></div>
+</div>
+
+document.getElementById("parent").addEventListener("click",function(e){
+    alert("parent事件被触发，"+this.id,false);
+})
+document.getElementById("child").addEventListener("click",function(e){
+    alert("child事件被触发，"+this.id,false)
+})
+//parent事件被触发，parent
+//child事件被触发，child
+
+
+try {
+    console.log(rrr)
+} catch (error) {
+    console.log("报错了",error)
+}
+
