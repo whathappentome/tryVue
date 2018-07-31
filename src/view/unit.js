@@ -409,4 +409,37 @@ try {
 } catch (error) {
     console.log("报错了",error)
 }
+/* 垃圾回收机制 */
+var arr=['aa',"ddd"]
+function test(){
+    let i = arr;
+    i.push("ddd");
+    var j=i;
+    console.log(j)
+}
+/* 引用类型对象指向改变 */
+var person=new Object();
+function test(obj){
+    obj.name ="dddd";
+    console.log(obj.name);
+    obj = new Object();
+    obj.name = "ccc";
+    console.log(obj.name);
+}
+test(person);
+// console.log(person.name)
+
+/* 作用域 */
+var k = 7;
+function test(){
+    var i = 9;
+    function test1(){
+        var j =10;
+        console.log(k,i,j)//7 9 10
+    }
+    test1();
+    // console.log(k,i,j)//7 9  j is not defined
+}
+test();
+console.log(k,i,j)//7 i,j is not defined
 
