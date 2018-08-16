@@ -22,6 +22,10 @@ export default {
       msg: 'Welcome to Your Vue.js App'
     }
   },
+  mounted(){
+    console.log(window.location);
+    
+  },
   methods(){
     document.getElementById("parent").addEventListener("click",function(e){
         alert("parent事件被触发，"+this.id,false);

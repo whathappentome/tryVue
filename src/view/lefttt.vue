@@ -39,6 +39,8 @@ export default {
   methods: {
   },
   mounted(){
+
+    console.log(document.all);
     var data = {"重庆市":[106.55, 29.57],"万州":[ 108.4, 30.82],}
     var dataValue = [{"name":"重庆市","value":[106.55, 29.57,480]},{"name":"万州","value":[108.4, 30.82,480]},]
     this.echart= echarts.init(document.getElementById("eca"));

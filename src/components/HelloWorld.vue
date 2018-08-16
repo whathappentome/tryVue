@@ -55,6 +55,10 @@ export default {
       msg: 'Welcome to Your Vue.js App'
     }
   },
+  mounted(){
+    console.log(window.location);
+    
+  },
   methods: {
     redirect() {
         this.$router.push("/leftt");

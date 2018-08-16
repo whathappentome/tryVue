@@ -74,7 +74,7 @@ alert(str.substring(-12));//----------"0123456789"
 alert(str.substring(0,5));//----------"01234" 
 alert(str.substring(0,10));//---------"0123456789" 
 alert(str.substring(0,12));//---------"0123456789" 
-alert(str.substring(2,0));//----------"01" 
+console.log(str.substring(0,2));//----------"01" 
 alert(str.substring(2,2));//----------"" 
 alert(str.substring(2,5));//----------"234" 
 alert(str.substring(2,12));//---------"23456789" 
@@ -443,3 +443,33 @@ function test(){
 test();
 console.log(k,i,j)//7 i,j is not defined
 
+/*  */
+var person ={}
+Object.defineProperty(person,"name",{
+    writable:false,
+    value:"ddd"
+})
+console.log(person.name);
+person.name="ccc"
+
+function getUrlParam(sUrl, sKey) {
+       var r=/(\?|&)(\w+)\=(\w+)/g;
+       var res={};
+    // console.log("xxx",r.exec(sUrl))
+       while(r.exec(sUrl)!=null){
+        console.log("xxx",res[RegExp.$2],RegExp)
+           if(res[RegExp.$2]){
+               var temp=res[RegExp.$2];
+               res[RegExp.$2]=[].concat(temp,RegExp.$3)
+           }else{
+               res[RegExp.$2]=RegExp.$3;
+           }
+       }
+       if(sKey) {
+        
+    // console.log("ccc",sKey,res[sKey])
+           return res[sKey]||'';
+       }
+       return res;
+    }
+getUrlParam("https://www.baidu.com/s?ie=utf&f=8&rsvbp=1&rsvidx=1&tn=baidu","rsvidx")
