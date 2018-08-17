@@ -472,4 +472,41 @@ function getUrlParam(sUrl, sKey) {
        }
        return res;
     }
-getUrlParam("https://www.baidu.com/s?ie=utf&f=8&rsvbp=1&rsvidx=1&tn=baidu","rsvidx")
+getUrlParam("https://www.baidu.com/s?ie=utf&f=8&rsvbp=1&rsvidx=1&tn=baidu","rsvidx");
+
+/* 科里化 */
+
+function square(i) {
+    return i * i;
+}
+
+function currying(fn) {
+    // console.log("fn",fn)
+    //arguments currying参数（两个函数）
+    var slice = Array.prototype.slice,
+    __args = slice.call(arguments, 1);
+    
+    // console.log("slice",slice);
+    console.log("__args",arguments)
+    return function () {
+        var __inargs = slice.call(arguments);
+        // console.log("fn.apply(null, __args.concat(__inargs))",fn.apply(null, __args.concat(__inargs)))
+        return fn.apply(null, __args.concat(__inargs));
+    };
+}
+
+function map(handeler, list) {
+    // console.log(list.map(handeler));
+    return list.map(handeler);
+}
+var mapSQ = currying(map, square);
+// 数组的每一项平方
+console.log(mapSQ([1, 2, 3, 4, 5]) );
+map(square, [6, 7, 8, 9, 10]);
+map(square, [10, 20, 30, 40, 50]);
+// ......
+
+// 数组的每一项加倍
+map(dubble, [1, 2, 3, 4, 5]);
+map(dubble, [6, 7, 8, 9, 10]);
+map(dubble, [10, 20, 30, 40, 50]);
